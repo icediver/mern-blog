@@ -2,6 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import {
   registerValidation,
   loginValidation,
@@ -11,9 +12,12 @@ import {
 import { UserController, PostController } from './controllers/index.js';
 import { checkAuth, handleValidationErrors } from './utils/index.js';
 
+dotenv.config();
+
+
 mongoose
   .connect(
-    'mongodb+srv://admin:Art28042001@cluster0.5epoz.mongodb.net/blog?retryWrites=true&w=majority',
+    process.env.MONGO
   )
   .then(() => {
     console.log('DB ok');
